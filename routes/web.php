@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 // Landing page (not authenticated)
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->name("welcome");
 });
 
 // Authentication routes (Breeze)
