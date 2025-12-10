@@ -14,6 +14,7 @@
     <table class="w-full">
         <thead class="bg-gray-100 border-b">
             <tr>
+                <th class="px-6 py-3 text-left text-sm font-semibold">Image</th>
                 <th class="px-6 py-3 text-left text-sm font-semibold">Code</th>
                 <th class="px-6 py-3 text-left text-sm font-semibold">Name</th>
                 <th class="px-6 py-3 text-left text-sm font-semibold">Category</th>
@@ -26,6 +27,13 @@
         <tbody>
             @forelse($products as $product)
             <tr class="border-b hover:bg-gray-50">
+                <td class="px-6 py-3">
+                    @if($product->product_image)
+                        <img src="{{ asset('storage/' . $product->product_image) }}" alt="{{ $product->product_name }}" class="h-10 w-10 object-cover rounded">
+                    @else
+                        <div class="h-10 w-10 bg-gray-200 rounded flex items-center justify-center text-xs text-gray-500">No Img</div>
+                    @endif
+                </td>
                 <td class="px-6 py-3 text-sm font-mono">{{ $product->product_code }}</td>
                 <td class="px-6 py-3 text-sm">{{ $product->product_name }}</td>
                 <td class="px-6 py-3 text-sm">{{ $product->product_category }}</td>
@@ -51,7 +59,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="7" class="px-6 py-8 text-center text-gray-500">No products found</td>
+                <td colspan="8" class="px-6 py-8 text-center text-gray-500">No products found</td>
             </tr>
             @endforelse
         </tbody>
