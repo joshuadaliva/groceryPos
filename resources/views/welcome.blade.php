@@ -17,7 +17,7 @@
         }
     </script>
 </head>
-<body class="antialiased bg-slate-950 dark:bg-slate-950 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200">
+<body class="antialiased bg-slate-950  text-slate-900 dark:text-slate-100 transition-colors duration-200">
     <div class="min-h-screen flex flex-col">
 
         {{-- Top navigation --}}
