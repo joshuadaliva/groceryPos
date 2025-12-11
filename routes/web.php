@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Route;
 
 // Landing page (not authenticated)
 Route::get('/', function () {
-    return view('welcome')->name("welcome");
-});
+    return view('welcome');
+})->name("welcome");
 
 // Authentication routes (Breeze)
 Route::middleware('auth')->group(function () {
