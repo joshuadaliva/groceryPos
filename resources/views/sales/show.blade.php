@@ -55,7 +55,7 @@
                 </p>
             </div>
         </div>
-
+        
         {{-- Totals Summary --}}
         <div class="max-w-sm ml-auto space-y-3 border-t border-gray-200 dark:border-slate-800 pt-6">
             {{-- Total Amount --}}

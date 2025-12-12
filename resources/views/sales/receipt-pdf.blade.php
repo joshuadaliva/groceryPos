@@ -69,12 +69,15 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($sale->saleDetails as $detail)
+                {{-- Products are displayed here by looping through saleDetails --}}
+                
+                @foreach ($sale->saleDetails as $detail)
                 <tr>
-                    <td class="pt-1 pb-1 pr-1 leading-tight">{{ $detail->product->product_name }}</td>
-                    <td class="text-right">{{ $detail->quantity }}</td>
-                    <td class="text-right">₱{{ number_format($detail->price, 2) }}</td>
-                    <td class="text-right">₱{{ number_format($detail->subtotal, 2) }}</td>
+                    {{-- ADDED CLASSES for alignment and vertical padding --}}
+                    <td class="text-left py-1">{{ $detail->product->name }}</td>
+                    <td class="text-right py-1">{{ $detail->quantity }}</td>
+                    <td class="text-right py-1">₱{{ number_format($detail->price, 2) }}</td>
+                    <td class="text-right py-1">₱{{ number_format($detail->quantity * $detail->price, 2) }}</td>
                 </tr>
                 @endforeach
             </tbody>
