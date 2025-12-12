@@ -8,18 +8,21 @@
     /* Custom CSS for thermal receipt look */
     .receipt-container {
         /* Max width for standard thermal printer paper (approx 320px) */
-        max-width: 320px; 
+        max-width: 320px;
         /* Ensure content doesn't break outside the width */
-        word-wrap: break-word; 
+        word-wrap: break-word;
     }
+
     .dashed-divider {
         border-top: 1px dashed #777;
     }
+
     /* Hide buttons/actions when printing */
     @media print {
         .no-print {
             display: none;
         }
+
         /* Ensure the receipt itself is the only thing visible and takes full width */
         .receipt-container {
             max-width: none !important;
@@ -86,18 +89,18 @@
             <span class="font-normal">Subtotal:</span>
             <span class="font-semibold">₱{{ number_format($sale->total_amount, 2) }}</span>
         </div>
-        
+
         <div class="flex justify-between">
             <span class="font-normal">Tax (0%):</span>
             <span class="font-semibold">₱{{ number_format(0, 2) }}</span>
         </div>
-        
+
         <div class="dashed-divider pt-2 flex justify-between text-base font-extrabold text-gray-800">
             <span>GRAND TOTAL:</span>
             <span>₱{{ number_format($sale->total_amount, 2) }}</span>
         </div>
     </div>
-    
+
     <div class="space-y-1 mt-4 border-t-2 border-dashed pt-4">
         <div class="flex justify-between">
             <span class="font-normal">Tendered (CASH):</span>

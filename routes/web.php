@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
     // Admin routes only
     Route::middleware('admin')->group(function () {
         // Products
+        Route::get('/product/barcodes', [ProductController::class, 'generateBarcodes'])->name('products.barcodes');
         Route::resource('products', ProductController::class);
         Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
         Route::get('/product/code/{code}', [ProductController::class, 'getByCode'])->name('product.bycode');
@@ -42,4 +43,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

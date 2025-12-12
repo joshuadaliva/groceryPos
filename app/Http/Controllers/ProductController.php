@@ -41,7 +41,7 @@ class ProductController extends Controller
         Product::create($validated);
 
         return redirect()->route('products.index')
-                       ->with('success', 'Product added successfully!');
+            ->with('success', 'Product added successfully!');
     }
 
     // Show edit form
@@ -54,7 +54,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $validated = $request->validate([
-            'product_code' => 'required|unique:products,product_code,' . $product->id,
+            'product_code' => 'required|numeric|unique:products,product_code,' . $product->id,
             'product_name' => 'required|string|max:250',
             'product_category' => 'required|string|max:45',
             'price' => 'required|numeric|min:0',
@@ -71,7 +71,7 @@ class ProductController extends Controller
         $product->update($validated);
 
         return redirect()->route('products.index')
-                       ->with('success', 'Product updated successfully!');
+            ->with('success', 'Product updated successfully!');
     }
 
     // Delete product
@@ -80,18 +80,18 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index')
-                       ->with('success', 'Product deleted successfully!');
+            ->with('success', 'Product deleted successfully!');
     }
 
     // Search products (AJAX)
     public function search(Request $request)
     {
         $search = $request->input('q');
-        
+
         $products = Product::where('product_name', 'like', '%' . $search . '%')
-                           ->orWhere('product_code', 'like', '%' . $search . '%')
-                           ->where('stock_quantity', '>', 0)
-                           ->get();
+            ->orWhere('product_code', 'like', '%' . $search . '%')
+            ->where('stock_quantity', '>', 0)
+            ->get();
 
         return response()->json($products);
     }
@@ -107,5 +107,15 @@ class ProductController extends Controller
         }
 
         return response()->json($product);
+    }
+
+    public function generateBarcodes()
+    {
+        // Fetch all products, ordered by name for easy reference
+        $products = Product::orderBy('product_name')->get();
+
+        return view('products.barcodes', [
+            'products' => $products,
+        ]);
     }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +8,7 @@
     <title>Mini Grocery POS</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
     <!-- Dark mode script -->
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -17,6 +18,7 @@
         }
     </script>
 </head>
+
 <body class="antialiased bg-slate-950  text-slate-900 dark:text-slate-100 transition-colors duration-200">
     <div class="min-h-screen flex flex-col">
 
@@ -51,15 +53,15 @@
                     </button>
 
                     @auth
-                        <a href="{{ route('dashboard') }}"
-                           class="hidden sm:inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-900 dark:text-slate-100 border border-gray-300 dark:border-slate-700/80 transition-colors">
-                            Open dashboard
-                        </a>
+                    <a href="{{ route('dashboard') }}"
+                        class="hidden sm:inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-900 dark:text-slate-100 border border-gray-300 dark:border-slate-700/80 transition-colors">
+                        Open dashboard
+                    </a>
                     @else
-                        <a href="{{ route('login') }}"
-                           class="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg shadow-emerald-500/40 transition">
-                            Sign in as admin
-                        </a>
+                    <a href="{{ route('login') }}"
+                        class="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg shadow-emerald-500/40 transition">
+                        Sign in as admin
+                    </a>
                     @endauth
                 </div>
             </div>
@@ -92,15 +94,15 @@
 
                         <div class="mt-8 flex flex-wrap items-center gap-4">
                             @auth
-                                <a href="{{ route('dashboard') }}"
-                                   class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg shadow-emerald-500/40 transition">
-                                    Go to dashboard
-                                </a>
+                            <a href="{{ route('dashboard') }}"
+                                class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg shadow-emerald-500/40 transition">
+                                Go to dashboard
+                            </a>
                             @else
-                                <a href="{{ route('login') }}"
-                                   class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg shadow-emerald-500/40 transition">
-                                    Sign in as admin
-                                </a>
+                            <a href="{{ route('login') }}"
+                                class="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg shadow-emerald-500/40 transition">
+                                Sign in as admin
+                            </a>
                             @endauth
 
                             <span class="text-xs text-gray-500 dark:text-slate-400 transition-colors">
@@ -205,9 +207,9 @@
             const html = document.documentElement;
             const currentTheme = localStorage.getItem('theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
+
             localStorage.setItem('theme', newTheme);
-            
+
             if (newTheme === 'dark') {
                 html.classList.add('dark');
             } else {
@@ -216,4 +218,5 @@
         }
     </script>
 </body>
+
 </html>

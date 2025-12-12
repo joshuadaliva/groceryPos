@@ -70,7 +70,7 @@ class PosController extends Controller
         // Create sale details and update stock
         foreach ($validated['items'] as $item) {
             $product = Product::find($item['product_id']);
-            
+
             SalesDetail::create([
                 'sale_id' => $sale->id,
                 'product_id' => $item['product_id'],

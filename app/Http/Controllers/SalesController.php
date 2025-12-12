@@ -11,8 +11,8 @@ class SalesController extends Controller
     public function index()
     {
         $sales = Sale::with('user', 'saleDetails.product')
-                    ->orderBy('sale_date', 'desc')
-                    ->paginate(15);
+            ->orderBy('sale_date', 'desc')
+            ->paginate(15);
 
         return view('sales.index', compact('sales'));
     }
@@ -49,8 +49,8 @@ class SalesController extends Controller
         }
 
         $sales = $query->with('user', 'saleDetails.product')
-                      ->orderBy('sale_date', 'desc')
-                      ->paginate(15);
+            ->orderBy('sale_date', 'desc')
+            ->paginate(15);
 
         return view('sales.index', compact('sales'));
     }

@@ -84,11 +84,11 @@
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-slate-50">Sales Trend</h3>
                 <span class="text-xs text-gray-500 dark:text-slate-400">Last 7 Days</span>
             </div>
-            
+
             <div class="space-y-4">
                 @php
-                    $maxAmount = collect($salesTrend)->max('amount');
-                    $maxAmount = $maxAmount > 0 ? $maxAmount : 1;
+                $maxAmount = collect($salesTrend)->max('amount');
+                $maxAmount = $maxAmount > 0 ? $maxAmount : 1;
                 @endphp
 
                 @foreach($salesTrend as $trend)
@@ -99,7 +99,7 @@
                     </div>
                     <div class="w-full bg-gray-200 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden">
                         @php
-                            $percentage = ($trend['amount'] / $maxAmount) * 100;
+                        $percentage = ($trend['amount'] / $maxAmount) * 100;
                         @endphp
                         <div class="bg-gradient-to-r from-emerald-500 to-emerald-400 h-2.5 rounded-full transition-all duration-500" style="width: {{ $percentage }}%"></div>
                     </div>
@@ -114,7 +114,7 @@
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-slate-50">Top Selling Products</h3>
                 <span class="text-xs text-gray-500 dark:text-slate-400">This Month</span>
             </div>
-            
+
             <div class="space-y-3">
                 @forelse($topProducts as $index => $product)
                 <div class="flex items-center gap-4 p-3 rounded-xl border border-gray-200 dark:border-slate-800 bg-gray-50 dark:bg-slate-900/60 hover:bg-gray-100 dark:hover:bg-slate-900 transition-colors">
@@ -158,96 +158,96 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const salesTrend = @json($salesTrend);
-    const dates = salesTrend.map(t => t.date);
-    const amounts = salesTrend.map(t => t.amount);
+    document.addEventListener('DOMContentLoaded', function() {
+        const salesTrend = @json($salesTrend);
+        const dates = salesTrend.map(t => t.date);
+        const amounts = salesTrend.map(t => t.amount);
 
-    // Check if dark mode is enabled
-    const isDarkMode = document.documentElement.classList.contains('dark');
-    
-    const ctx = document.getElementById('salesChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: dates,
-            datasets: [{
-                label: 'Daily Sales',
-                data: amounts,
-                borderColor: 'rgb(34, 197, 94)',
-                backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                borderWidth: 3,
-                tension: 0.4,
-                fill: true,
-                pointBackgroundColor: 'rgb(34, 197, 94)',
-                pointBorderColor: '#fff',
-                pointBorderWidth: 2,
-                pointRadius: 5,
-                pointHoverRadius: 7,
-                pointHoverBackgroundColor: 'rgb(34, 197, 94)',
-                pointHoverBorderColor: '#fff',
-                pointHoverBorderWidth: 3
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    backgroundColor: isDarkMode ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-                    titleColor: isDarkMode ? '#f1f5f9' : '#0f172a',
-                    bodyColor: isDarkMode ? '#cbd5e1' : '#475569',
-                    borderColor: isDarkMode ? 'rgba(34, 197, 94, 0.3)' : 'rgba(34, 197, 94, 0.2)',
-                    borderWidth: 1,
-                    padding: 12,
-                    displayColors: false,
-                    callbacks: {
-                        label: function(context) {
-                            return '₱' + context.parsed.y.toFixed(2);
-                        }
-                    }
-                }
+        // Check if dark mode is enabled
+        const isDarkMode = document.documentElement.classList.contains('dark');
+
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Daily Sales',
+                    data: amounts,
+                    borderColor: 'rgb(34, 197, 94)',
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: 'rgb(34, 197, 94)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointHoverBackgroundColor: 'rgb(34, 197, 94)',
+                    pointHoverBorderColor: '#fff',
+                    pointHoverBorderWidth: 3
+                }]
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    border: {
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
                         display: false
                     },
-                    grid: {
-                        color: isDarkMode ? 'rgba(148, 163, 184, 0.1)' : 'rgba(148, 163, 184, 0.2)',
-                        drawTicks: false
-                    },
-                    ticks: {
-                        padding: 10,
-                        color: isDarkMode ? '#94a3b8' : '#64748b',
-                        callback: function(value) {
-                            return '₱' + value.toFixed(0);
+                    tooltip: {
+                        backgroundColor: isDarkMode ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+                        titleColor: isDarkMode ? '#f1f5f9' : '#0f172a',
+                        bodyColor: isDarkMode ? '#cbd5e1' : '#475569',
+                        borderColor: isDarkMode ? 'rgba(34, 197, 94, 0.3)' : 'rgba(34, 197, 94, 0.2)',
+                        borderWidth: 1,
+                        padding: 12,
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                return '₱' + context.parsed.y.toFixed(2);
+                            }
                         }
                     }
                 },
-                x: {
-                    border: {
-                        display: false
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        border: {
+                            display: false
+                        },
+                        grid: {
+                            color: isDarkMode ? 'rgba(148, 163, 184, 0.1)' : 'rgba(148, 163, 184, 0.2)',
+                            drawTicks: false
+                        },
+                        ticks: {
+                            padding: 10,
+                            color: isDarkMode ? '#94a3b8' : '#64748b',
+                            callback: function(value) {
+                                return '₱' + value.toFixed(0);
+                            }
+                        }
                     },
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        padding: 10,
-                        color: isDarkMode ? '#94a3b8' : '#64748b'
+                    x: {
+                        border: {
+                            display: false
+                        },
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            padding: 10,
+                            color: isDarkMode ? '#94a3b8' : '#64748b'
+                        }
                     }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
                 }
-            },
-            interaction: {
-                intersect: false,
-                mode: 'index'
             }
-        }
+        });
     });
-});
 </script>
 @endsection
