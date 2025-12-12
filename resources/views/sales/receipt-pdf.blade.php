@@ -74,7 +74,7 @@
                 @foreach ($sale->saleDetails as $detail)
                 <tr>
                     {{-- ADDED CLASSES for alignment and vertical padding --}}
-                    <td class="text-left py-1">{{ $detail->product->name }}</td>
+                    <td class="text-left py-1">{{ $detail->product->product_name }}</td>
                     <td class="text-right py-1">{{ $detail->quantity }}</td>
                     <td class="text-right py-1">₱{{ number_format($detail->price, 2) }}</td>
                     <td class="text-right py-1">₱{{ number_format($detail->quantity * $detail->price, 2) }}</td>
