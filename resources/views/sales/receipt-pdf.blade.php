@@ -32,7 +32,7 @@
 <div class="receipt-container mx-auto bg-white shadow-xl p-4 font-mono text-sm">
 
     <div class="text-center mb-4 border-b pb-3">
-        <h1 class="text-xl font-extrabold tracking-widest text-gray-800">FASTPOS STORE</h1>
+        <h1 class="text-xl font-extrabold tracking-widest text-gray-800">BENTODA STORE</h1>
         <p class="text-xs text-gray-500 mt-1">123 Main St, Central City, 54321</p>
         <p class="text-xs text-gray-500">Phone: (123) 456-7890</p>
     </div>

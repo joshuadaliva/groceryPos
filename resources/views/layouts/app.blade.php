@@ -29,8 +29,8 @@
         <header class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-gray-200 dark:border-slate-800/80 transition-colors">
             <div class="flex items-center justify-between px-4 h-16">
                 <div class="flex items-center gap-2">
-                    <div class="h-9 w-9 rounded-xl bg-emerald-500/90 flex items-center justify-center shadow-lg shadow-emerald-500/40">
-                        <span class="text-xl font-black tracking-tight text-white">G</span>
+                    <div class="h-9 px-2 rounded-xl bg-emerald-500/90 flex items-center justify-center shadow-lg shadow-emerald-500/40">
+                        <span class="text-xl font-black tracking-tight text-white">Bentoda</span>
                     </div>
                     <div>
                         <p class="text-sm font-semibold tracking-tight text-gray-900 dark:text-slate-50">Mini Grocery</p>
@@ -66,8 +66,8 @@
             <!-- Sidebar Header -->
             <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-slate-800">
                 <div class="flex items-center gap-2">
-                    <div class="h-10 w-10 rounded-xl bg-emerald-500/90 flex items-center justify-center shadow-lg shadow-emerald-500/40">
-                        <span class="text-xl font-black tracking-tight text-white">G</span>
+                    <div class="h-10 px-2 rounded-xl bg-emerald-500/90 flex items-center justify-center shadow-lg shadow-emerald-500/40">
+                        <span class="text-xl font-black tracking-tight text-white">Bentoda</span>
                     </div>
                     <div>
                         <p class="text-sm font-semibold tracking-tight text-gray-900 dark:text-slate-50">Mini Grocery</p>

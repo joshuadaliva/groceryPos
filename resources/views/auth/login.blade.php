@@ -30,8 +30,8 @@
                 
                 <!-- Logo & Title -->
                 <div class="flex flex-col items-center mb-8">
-                    <div class="h-12 w-12 rounded-xl bg-emerald-500/90 flex items-center justify-center shadow-lg shadow-emerald-500/40 mb-4">
-                        <span class="text-2xl font-black tracking-tight text-white">G</span>
+                    <div class="h-12 px-2 rounded-xl bg-emerald-500/90 flex items-center justify-center shadow-lg shadow-emerald-500/40 mb-4">
+                        <span class="text-2xl font-black tracking-tight text-white">Bentoda Store</span>
                     </div>
                     <h2 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-slate-50">Welcome back</h2>
                     <p class="text-sm text-gray-600 dark:text-slate-400 mt-1">Sign in to your admin account</p>

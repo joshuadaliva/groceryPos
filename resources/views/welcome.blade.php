@@ -26,8 +26,8 @@
         <header class="w-full border-b border-gray-200 dark:border-slate-800/80 bg-white/80 dark:bg-slate-950/80 backdrop-blur transition-colors duration-200">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
                 <div class="flex items-center gap-2">
-                    <div class="h-9 w-9 rounded-xl bg-emerald-500/90 flex items-center justify-center shadow-lg shadow-emerald-500/40">
-                        <span class="text-xl font-black tracking-tight text-white">G</span>
+                    <div class="h-9 px-2 rounded-xl bg-emerald-500/90 flex items-center justify-center shadow-lg shadow-emerald-500/40">
+                        <span class="text-xl font-black tracking-tight text-white">Bentoda</span>
                     </div>
                     <div>
                         <p class="text-sm font-semibold tracking-tight text-gray-900 dark:text-slate-50">Mini Grocery Store</p>
