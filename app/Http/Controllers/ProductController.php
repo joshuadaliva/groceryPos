@@ -7,17 +7,56 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    // Hardcoded list of categories for the dropdowns.
+    // NOTE: In a production environment, this list should ideally be fetched from a separate 'Categories' table in the database or stored in a config file.
+    private $categories = [
+        'Beverages',
+        'Snacks',
+        'Produce',
+        'Dairy',
+        'Frozen Foods',
+        'Household',
+        'Canned Goods',
+        'Meat',
+        'Seafood',
+    ];
+
     // Show all products
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(15);
-        return view('products.index', compact('products'));
+        $query = Product::query();
+        $search = $request->get('q');
+        $categoryFilter = $request->get('category');
+
+        // Apply search filter (name or code)
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('product_name', 'like', '%' . $search . '%')
+                  ->orWhere('product_code', 'like', '%' . $search . '%');
+            });
+        }
+
+        // Apply category filter
+        if ($categoryFilter) {
+            $query->where('product_category', $categoryFilter);
+        }
+
+        $products = $query->paginate(15)->appends($request->query());
+
+        // Pass categories and filter values to the view
+        return view('products.index', [
+            'products' => $products,
+            'categories' => $this->categories,
+            'search' => $search,
+            'categoryFilter' => $categoryFilter,
+        ]);
     }
 
     // Show create form
     public function create()
     {
-        return view('products.create');
+        // Pass categories to the view
+        return view('products.create', ['categories' => $this->categories]);
     }
 
     // Store new product
@@ -47,14 +86,19 @@ class ProductController extends Controller
     // Show edit form
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        // Pass categories to the view
+        return view('products.edit', [
+            'product' => $product,
+            'categories' => $this->categories,
+        ]);
     }
 
     // Update product
     public function update(Request $request, Product $product)
     {
         $validated = $request->validate([
-            'product_code' => 'required|numeric|unique:products,product_code,' . $product->id,
+            // NOTE: Changed from 'numeric' to 'string' for product_code, as the placeholder 'PROD-001' is alphanumeric.
+            'product_code' => 'required|string|max:255|unique:products,product_code,' . $product->id,
             'product_name' => 'required|string|max:250',
             'product_category' => 'required|string|max:45',
             'price' => 'required|numeric|min:0',

@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="space-y-6 max-w-3xl mx-auto">
-    <!-- Page Header -->
     <div>
         <a href="{{ route('products.index') }}"
             class="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors mb-4">
@@ -17,12 +16,10 @@
         <p class="text-sm text-gray-600 dark:text-slate-400 mt-1">Fill in the details below to add a new product to your inventory</p>
     </div>
 
-    <!-- Form Card -->
     <div class="rounded-2xl border border-gray-200 dark:border-slate-800/80 bg-white/80 dark:bg-slate-900/70 backdrop-blur-xl shadow-lg shadow-gray-200/50 dark:shadow-emerald-500/5 p-6 sm:p-8 transition-colors">
         <form method="POST" action="{{ route('products.store') }}" class="space-y-6" enctype="multipart/form-data">
             @csrf
 
-            <!-- Product Image Upload with Preview -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-3">Product Image</label>
                 <div id="image-preview"
@@ -49,7 +46,6 @@
                 @enderror
             </div>
 
-            <!-- Product Code & Name -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
@@ -70,19 +66,23 @@
                     <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                         Category <span class="text-red-500">*</span>
                     </label>
-                    <input type="text"
+                    <select
                         name="product_category"
-                        value="{{ old('product_category') }}"
-                        placeholder="e.g., Beverages"
                         class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800/50 text-gray-900 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent transition-colors"
                         required>
+                        <option value="" disabled selected>Select a Category</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category }}" {{ old('product_category') == $category ? 'selected' : '' }}>
+                                {{ $category }}
+                            </option>
+                        @endforeach
+                    </select>
                     @error('product_category')
                     <p class="mt-1 text-xs text-red-600 dark:text-red-400">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
 
-            <!-- Product Name (Full Width) -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                     Product Name <span class="text-red-500">*</span>
@@ -98,7 +98,6 @@
                 @enderror
             </div>
 
-            <!-- Price & Stock Quantity -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
@@ -135,7 +134,6 @@
                 </div>
             </div>
 
-            <!-- Description -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">Description</label>
                 <textarea name="description"
@@ -144,7 +142,6 @@
                     class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800/50 text-gray-900 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent transition-colors resize-none">{{ old('description') }}</textarea>
             </div>
 
-            <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200 dark:border-slate-800">
                 <button type="submit"
                     class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg shadow-emerald-500/40 transition-all duration-200 hover:shadow-emerald-500/50">
