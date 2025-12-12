@@ -14,11 +14,12 @@
 
     <!-- Filters Card -->
     <div class="rounded-2xl border border-gray-200 dark:border-slate-800/80 bg-white/80 dark:bg-slate-900/70 backdrop-blur-xl shadow-lg shadow-gray-200/50 dark:shadow-emerald-500/5 p-3 transition-colors">
-        <form method="POST" action="{{ route('sales.filter') }}" class="space-y-4">
+    <form method="POST" action="{{ route('sales.filter') }}" class="space-y-4">
             @csrf
             <div class="flex items-center justify-between mb-4">
                 <h3 class="text-base font-semibold text-gray-900 dark:text-slate-50">Filter Sales</h3>
-                @if(request()->has('start_date') || request()->has('end_date'))
+                {{-- UPDATED: Include check for invoice_number filter --}}
+                @if(request()->has('start_date') || request()->has('end_date') || request()->has('invoice_number'))
                     <a href="{{ route('sales.index') }}" 
                        class="text-xs text-gray-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
                         Clear filters
@@ -26,7 +27,8 @@
                 @endif
             </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {{-- UPDATED: Changed lg:grid-cols-3 to lg:grid-cols-4 to accommodate the new search input --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">Start Date</label>
                     <input type="date" 
@@ -40,6 +42,16 @@
                     <input type="date" 
                            name="end_date" 
                            value="{{ request('end_date') }}"
+                           class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800/50 text-gray-900 dark:text-slate-100 focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent transition-colors">
+                </div>
+                
+                {{-- ADDED: Invoice Number Search Input --}}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">Search Invoice #</label>
+                    <input type="text" 
+                           name="invoice_number" 
+                           placeholder="Enter invoice number..."
+                           value="{{ request('invoice_number') }}"
                            class="w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800/50 text-gray-900 dark:text-slate-100 focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent transition-colors">
                 </div>
                 

@@ -44,6 +44,10 @@ class SalesController extends Controller
             $query->whereDate('sale_date', '<=', $request->end_date);
         }
 
+        if ($request->filled('invoice_number')) {
+            $query->where('invoice_number', 'like', '%' . $request->invoice_number . '%');
+        }
+
         $sales = $query->with('user', 'saleDetails.product')
                       ->orderBy('sale_date', 'desc')
                       ->paginate(15);
